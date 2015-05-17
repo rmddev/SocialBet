@@ -1,6 +1,7 @@
 class BetsController < ApplicationController
 
 	before_action :find_bet, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
 		@bets = Bet.all.order("created_at DESC")
@@ -10,11 +11,11 @@ class BetsController < ApplicationController
 	end
 
 	def new
-		@bet = Bet.new
+		@bet = current_user.bets.new
 	end
 
 	def create
-		@bet = Bet.create(bet_params)
+		@bet = current_user.bets.create(bet_params)
 		if @bet.save
 			flash[:success] = "Bet Added, Good Luck!"
 			redirect_to @bet

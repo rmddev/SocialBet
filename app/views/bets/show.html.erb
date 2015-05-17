@@ -28,15 +28,40 @@
 		</div><!-- /.panel-body -->
 
 		<div class="panel-footer">
-			<a href="#" class="btn btn-default btn-primary">Place Similar Bet</a> <%= link_to "Back The Bet", "", class: "btn btn-default"  %>
+			
 
 			<div class="pull-right">
-				<%= link_to "Edit Bet", edit_bet_path, class: "btn btn-warning"  %>
-				<%= link_to "Delete Bet", @bet, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+				<% if !user_signed_in? %>
+				<%= link_to "Place Similar Bet", "", class: "btn btn-default"  %>
+				<% end %>
 			</div><!-- /.pull-right -->
+
+			<div class="clear"></div>
 		</div><!-- /.panel-footer -->
 
 	</div><!-- /.panel -->
+
+	<div class="panel panel-default">
+		
+		<div class="panel-heading"><h2>User Details</h2></div><!-- /.panel-heading -->
+
+			<div class="panel-body">Submitted by: <%= @bet.user.email %></div><!-- /.panel-body -->
+
+		<div class="panel-footer">
+			
+			<div class="pull-right">
+
+				<% if user_signed_in? %>
+					<%= link_to "Edit Bet", edit_bet_path, class: "btn btn-warning"  %>
+					<%= link_to "Delete Bet", @bet, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+				<% end %>
+			</div><!-- /.pull-right -->
+
+			<div class="clear"></div>
+
+		</div><!-- /.panel-footer -->
+
+	</div><!-- /.panel panel-default -->
 
 </div><!-- /.col-md-8 -->
 
