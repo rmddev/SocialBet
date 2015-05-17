@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  betamount: 1.5
+  potentialwins: 1.5
+  votes: 1
+
+two:
+  name: MyString
+  betamount: 1.5
+  potentialwins: 1.5
+  votes: 1

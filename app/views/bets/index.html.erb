@@ -1,0 +1,97 @@
+
+<div class="jumbotron">
+
+	<div class="text-center">
+	
+		<h1>Welcome to SocialBet</h1>
+		<p>Social Networking for gamblers</p>
+
+		<a href="" class="btn btn-primary">Sign Up</a>
+
+	</div><!-- /.text-center -->
+
+
+</div><!-- /.jumbotron -->
+
+<div class="row">
+
+	<div class="text-center">
+	
+	<div class="col-md-4">
+		<h2>Heading 1</h2>
+	
+		<p>Some text here Some text here Some text here Some text here Some text here</p>
+
+		<a href="" class="btn btn-default">Top Voted Bets</a>
+
+	</div><!-- /.col-md-4 -->
+
+	<div class="col-md-4">
+		<h2>Heading 1</h2>
+	
+		<p>Some text here Some text here Some text here Some text here Some text here</p>
+
+		<a href="" class="btn btn-default">This Weeks winners</a>
+
+	</div><!-- /.col-md-4 -->
+
+	<div class="col-md-4">
+		<h2>Heading 1</h2>
+	
+		<p>Some text here Some text here Some text here Some text here Some text here</p>
+		
+		<a href="" class="btn btn-default">Top Deals</a>
+	</div><!-- /.col-md-4 -->
+
+	</div><!-- /.text-center -->
+
+</div><!-- /.row -->
+
+
+<div class="row">
+	<div class="col-md-8">
+		
+		<h3>Latest Bets</h3>
+
+		<hr />
+
+		<% @bets.each do |bet| %>
+		
+			<h4><%= link_to bet.name, bet %></h4>
+
+			<p class="bet-amount">Amount Staked: <%= number_to_currency(bet.betamount, unit: "£") %></p><!-- /.bet-amount -->
+
+			<p class="potential">Potential Winnings: <%= number_to_currency(bet.potentialwins, unit: "£") %></p><!-- /.potential -->
+			
+			<hr />
+
+		<% end %>
+
+
+	</div><!-- /.col-md-8 -->
+
+	<div class="col-md-4">
+		
+		<h3>Bet Leaderboard</h3>
+
+		<ul>
+			<li>Username 1: 5000 points</li>
+			<li>Username 2: 4989 points</li>
+			<li>Username 3: 4893 points</li>
+			<li>Username 1: 5000 points</li>
+			<li>Username 2: 4989 points</li>
+			<li>Username 3: 4893 points</li>
+			<li>Username 1: 5000 points</li>
+			<li>Username 2: 4989 points</li>
+			<li>Username 3: 4893 points</li>
+			<li>Beat them? <%= link_to "Sign Up", "" %></li>
+		</ul>
+
+	</div><!-- /.col-md-4 -->
+
+
+
+</div><!-- /.row -->
+
+
+

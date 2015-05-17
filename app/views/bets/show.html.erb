@@ -1,0 +1,43 @@
+
+<div class="col-md-6">
+	
+	<div class="panel panel-default">
+		<div class="panel-heading"><h2>Bet Slip</h2></div><!-- /.panel-heading -->
+
+		<div class="panel-body">
+			<%= image_tag @bet.image.url,  class: "img-responsive" %>
+		</div><!-- /.panel-body -->
+
+	</div><!-- /.panel panel-default -->
+
+</div><!-- /.col-md-6 -->
+
+
+
+<div class="col-md-6">
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2>Bet Details</h2>
+		</div><!-- /.panel-heading -->
+
+		<div class="panel-body">
+			<%= @bet.name %>
+			<p class="bet-amount">Bet Amount Placed:<%= number_to_currency(@bet.betamount, unit: "£") %></p><!-- /.bet-amount -->
+			<p class="potential-wins">Potential Wins:<%= number_to_currency(@bet.potentialwins, unit: "£") %></p><!-- /.potential-wins -->
+		</div><!-- /.panel-body -->
+
+		<div class="panel-footer">
+			<a href="#" class="btn btn-default btn-primary">Place Similar Bet</a> <%= link_to "Back The Bet", "", class: "btn btn-default"  %>
+
+			<div class="pull-right">
+				<%= link_to "Edit Bet", edit_bet_path, class: "btn btn-warning"  %>
+				<%= link_to "Delete Bet", @bet, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+			</div><!-- /.pull-right -->
+		</div><!-- /.panel-footer -->
+
+	</div><!-- /.panel -->
+
+</div><!-- /.col-md-8 -->
+
+ 
