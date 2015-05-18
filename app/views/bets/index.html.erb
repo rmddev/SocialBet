@@ -1,12 +1,23 @@
-
 <div class="jumbotron">
 
 	<div class="text-center">
+
+		<% if !user_signed_in? %>
 	
 		<h1>Welcome to SocialBet</h1>
 		<p>Social Networking for gamblers</p>
 
 		<a href="" class="btn btn-primary">Sign Up</a>
+
+		<% else %>
+
+		<h1>Welcome Back</h1>
+
+		<p>Take a look at the top rated bets below, or submit your own</p>
+
+		<%= link_to "Submit a Bet", new_bet_path, class: "btn btn-primary"  %>
+
+		<% end %>
 
 	</div><!-- /.text-center -->
 
@@ -49,49 +60,60 @@
 
 
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-12">
 		
-		<h3>Latest Bets</h3>
+		<h3>Top Voted Bets</h3>
 
 		<hr />
 
 		<% @bets.each do |bet| %>
+
+			<div class="col-md-4 col-sm-6">
+
+				<div class="bet-container">
 		
-			<h4><%= link_to bet.name, bet %></h4>
+					<h4 class="betname"><%= link_to bet.name, bet %></h4>
 
-			<p class="bet-amount">Amount Staked: <%= number_to_currency(bet.betamount, unit: "£") %></p><!-- /.bet-amount -->
+					<p class="bet-amount">Amount Staked: <%= number_to_currency(bet.betamount, unit: "£") %></p><!-- /.bet-amount -->
 
-			<p class="potential">Potential Winnings: <%= number_to_currency(bet.potentialwins, unit: "£") %></p><!-- /.potential -->
+					<p class="potential">Potential Winnings: <%= number_to_currency(bet.potentialwins, unit: "£") %></p><!-- /.potential -->
+
+					<div class="votes pull-right">
+
+						<span class="glyphicon glyphicon-thumbs-up"></span>
+
+						<span class="badge liked"><%= bet.get_upvotes.size %></span>
+
+						<span class="glyphicon glyphicon-thumbs-down"></span>
+
+						<span class="badge unliked"><%= bet.get_downvotes.size %></span>
+
+					</div><!-- /.votes -->
+
+				</div><!--/bet container-->
 			
-			<hr />
+			</div><!--/col md 4-->
 
 		<% end %>
 
 
-	</div><!-- /.col-md-8 -->
-
-	<div class="col-md-4">
-		
-		<h3>Bet Leaderboard</h3>
-
-		<ul>
-			<li>Username 1: 5000 points</li>
-			<li>Username 2: 4989 points</li>
-			<li>Username 3: 4893 points</li>
-			<li>Username 1: 5000 points</li>
-			<li>Username 2: 4989 points</li>
-			<li>Username 3: 4893 points</li>
-			<li>Username 1: 5000 points</li>
-			<li>Username 2: 4989 points</li>
-			<li>Username 3: 4893 points</li>
-			<li>Beat them? <%= link_to "Sign Up", "" %></li>
-		</ul>
-
-	</div><!-- /.col-md-4 -->
-
+	</div><!-- /.col-md-12 -->
 
 
 </div><!-- /.row -->
+
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Bets from people you follow</h3>
+		<hr />
+
+		
+	</div><!-- /.col-md-12 -->
+</div><!-- /.row -->
+
+
+
 
 
 

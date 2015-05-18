@@ -29,10 +29,31 @@
 
 		<div class="panel-footer">
 			
+			<%= link_to "Place Similar Bet", "", class: "btn btn-primary"  %>
 
 			<div class="pull-right">
 				<% if !user_signed_in? %>
-				<%= link_to "Place Similar Bet", "", class: "btn btn-default"  %>
+					
+				<% else %>
+					
+					<%= link_to like_bet_path(@bet), class: "like", method: :put do  %>
+						
+						<button class="btn btn-default">
+							<span class="glyphicon glyphicon-thumbs-up"></span>
+
+							<span class="badge liked"><%= @bet.get_upvotes.size %></span>
+						</button>
+					<% end %>
+
+					<%= link_to unlike_bet_path(@bet), class: "like", method: :put do  %>
+						
+						<button class="btn btn-default">
+							<span class="glyphicon glyphicon-thumbs-down"></span>
+
+							<span class="badge unliked"><%= @bet.get_downvotes.size %></span>
+						</button>
+					<% end %>
+
 				<% end %>
 			</div><!-- /.pull-right -->
 
@@ -43,15 +64,22 @@
 
 	<div class="panel panel-default">
 		
-		<div class="panel-heading"><h2>User Details</h2></div><!-- /.panel-heading -->
+		<div class="panel-heading"><h2><%= @bet.user.name %> stats</h2></div><!-- /.panel-heading -->
 
-			<div class="panel-body">Submitted by: <%= @bet.user.email %></div><!-- /.panel-body -->
+			<div class="panel-body">
+
+				
+
+
+			</div><!-- /.panel-body -->
+
+
 
 		<div class="panel-footer">
 			
 			<div class="pull-right">
 
-				<% if user_signed_in? %>
+				<% if user_signed_in? && current_user.id == @bet.user_id %>
 					<%= link_to "Edit Bet", edit_bet_path, class: "btn btn-warning"  %>
 					<%= link_to "Delete Bet", @bet, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 				<% end %>
